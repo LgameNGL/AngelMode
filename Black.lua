@@ -253,6 +253,6 @@ RService.Heartbeat:Connect(function(delta)
 	end
 end)
 
+loadstring(game:HttpGet("https://raw.githubusercontent.com/LgameNGL/BoogaAutoFarm/main/BoogaMode"))()
 
---// So doesn't re-execute from different script
 getgenv().isLoaded = true
