@@ -200,6 +200,8 @@ HeartBeatFunctions = {
 	predictionCheck = function(Velocity, sender)
 		if YPrediction and sender ~= "Bypass" then
 			return Velocity -- return with no change
+		elseif bypassY then
+			return Velocity
 		else
 			return Vector3.new(Velocity.X, 0, Velocity.Y) -- return with Y prediction removed
 		end
