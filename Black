@@ -150,7 +150,7 @@ InputFunctions = {
 				while AntiEnabled do
 					--// this a dumb check asnilsadsa
 					if (not RootPart) or (not RootPart.Parent) or (not RootPart.Parent.Parent) then
-						repeat task.wait() RootPart = Character:FindFirstChild("HumanoidRootPart") until RootPart ~= nil
+						RootPart = Character:FindFirstChild("HumanoidRootPart")
 					else
 						RVelocity = RootPart.Velocity
 
