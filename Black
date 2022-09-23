@@ -26,7 +26,7 @@ TargetFunctions = {
 			})
 		end
 	end,
-	
+
 	WorldToViewportPoint = function(P)
 		return Camera:WorldToViewportPoint(P)
 	end,
@@ -79,15 +79,15 @@ TargetFunctions = {
 		for i, v in pairs(players) do
 			if v.Character ~= nil then
 				local AIM = v.Character:FindFirstChild("Head")
-					local DISTANCE = (v.Character:FindFirstChild("Head").Position - game.Workspace.CurrentCamera.CFrame.p).magnitude
-					local RAY = Ray.new(game.Workspace.CurrentCamera.CFrame.p, (Mouse.Hit.p - game.Workspace.CurrentCamera.CFrame.p).unit * DISTANCE)
-					local HIT,POS = game.Workspace:FindPartOnRay(RAY, game.Workspace)
-					local DIFF = math.floor((POS - AIM.Position).magnitude)
-					PLAYER_HOLD[v.Name .. i] = {}
-					PLAYER_HOLD[v.Name .. i].dist= DISTANCE
-					PLAYER_HOLD[v.Name .. i].plr = v
-					PLAYER_HOLD[v.Name .. i].diff = DIFF
-					table.insert(DISTANCES, DIFF)
+				local DISTANCE = (v.Character:FindFirstChild("Head").Position - game.Workspace.CurrentCamera.CFrame.p).magnitude
+				local RAY = Ray.new(game.Workspace.CurrentCamera.CFrame.p, (Mouse.Hit.p - game.Workspace.CurrentCamera.CFrame.p).unit * DISTANCE)
+				local HIT,POS = game.Workspace:FindPartOnRay(RAY, game.Workspace)
+				local DIFF = math.floor((POS - AIM.Position).magnitude)
+				PLAYER_HOLD[v.Name .. i] = {}
+				PLAYER_HOLD[v.Name .. i].dist= DISTANCE
+				PLAYER_HOLD[v.Name .. i].plr = v
+				PLAYER_HOLD[v.Name .. i].diff = DIFF
+				table.insert(DISTANCES, DIFF)
 			end
 		end
 
@@ -150,7 +150,9 @@ InputFunctions = {
 				while AntiEnabled do
 					--// this a dumb check asnilsadsa
 					if (not RootPart) or (not RootPart.Parent) or (not RootPart.Parent.Parent) then
-						RootPart = Character:FindFirstChild("HumanoidRootPart")
+						TargetFunctions.Notify("Died, waiting for CHARACTER")
+						repeat task.wait() RootPart = Character:FindFirstChild("HumanoidRootPart") until RootPart ~= nil
+						TargetFunctions.Notify("Found character")
 					else
 						RVelocity = RootPart.Velocity
 
@@ -193,7 +195,7 @@ HeartBeatFunctions = {
 			end
 		end
 	end,
-	
+
 	predictionCheck = function(Velocity, sender)
 		if YPrediction and sender ~= "Bypass" then
 			return Velocity -- return with no change
@@ -201,7 +203,7 @@ HeartBeatFunctions = {
 			return Vector3.new(Velocity.X, 0, Velocity.Y) -- return with Y prediction removed
 		end
 	end,
-	
+
 	CalculateVelocity = function(Before, After, deltaTime)
 		-- // Vars
 		local Displacement = (After - Before)
