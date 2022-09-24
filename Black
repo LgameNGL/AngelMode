@@ -193,6 +193,7 @@ InputFunctions = {
 	end,
 
 	HandleAntiToggle = function()
+	--[[
 		if AntiEnabled then
 			AntiEnabled = false
 			TargetFunctions.Notify("Disabled")
@@ -220,6 +221,7 @@ InputFunctions = {
 				TargetFunctions.Notify("BYE BYE FUNCTION")
 			end)
 		end
+		]]
 	end,
 
 	InputType = function(input)
