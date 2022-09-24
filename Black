@@ -13,6 +13,13 @@ local AimlockTarget;
 local AntiEnabled = false
 local PreviousPosition;
 
+local TargetPart = AimPart
+local h = true
+local d = false
+local j = false
+local k = false
+local del = 0.5
+
 
 -- // Functions to get target
 TargetFunctions = {
@@ -106,8 +113,54 @@ TargetFunctions = {
 			end
 		end
 		return nil
-	end
+	end,
+	
 
+	RandomPart = function()
+		if RandomAimParts then
+			local func = coroutine.create(function()
+				if h then
+					wait(del)
+					h = false
+					d = true
+					k = false
+					j = false
+				elseif d then
+					wait(del)
+					h = false
+					d = false
+					k = true
+					j = false
+				elseif k then
+					wait(del)
+					h = false
+					d = false
+					j = true
+					k = false
+				elseif j then
+					wait(del)
+					h = true
+					d = false
+					j = false
+					k = false
+				end
+			end)
+			coroutine.resume(func) 
+			if h then
+				TargetPart = "UpperTorso"
+			end
+			if d then
+				TargetPart = "Head"
+			end
+			if j then
+				TargetPart = "LeftUpperArm"
+			end
+			if k then
+				TargetPart = "RightUpperArm"
+			end
+		end
+	end
+	
 }
 
 InputFunctions = {
@@ -240,8 +293,9 @@ UIS.InputEnded:Connect(function(input, gp)
 end)
 
 RService.Heartbeat:Connect(function(delta)
+	TargetFunctions.RandomPart()
 	if HeartBeatFunctions.Checks() then
-		local Aim_Part = AimlockTarget.Character[AimPart]
+		local Aim_Part = AimlockTarget.Character[TargetPart]
 		if (not PreviousPosition) then
 			PreviousPosition = Aim_Part.Position
 		end
