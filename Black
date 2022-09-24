@@ -270,7 +270,11 @@ HeartBeatFunctions = {
 	end,
 
 	lockOn = function(Target, Velocity)
-		Camera.CFrame = CF(Camera.CFrame.p, Target.Position + Velocity*PredictionVelocity)
+		if mult then
+			Camera.CFrame = CF(Camera.CFrame.p, Target.Position + Velocity*PredictionVelocity)
+		else
+			Camera.CFrame = CF(Camera.CFrame.p, Target.Position + Velocity/PredictionVelocity)
+		end
 	end,
 }
 
