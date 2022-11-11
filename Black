@@ -17,7 +17,6 @@ local PreviousPosition;
 _G.TargetPart = AimPart
 local h = true
 local d = false
-del = rdelay
 
 
 -- // Functions to get target
@@ -119,25 +118,25 @@ TargetFunctions = {
 		if RandomAimParts then
 			local func = coroutine.create(function()
 				if h then
-					wait(del)
+					wait(rdel)
 					h = false
 					d = true
 					k = false
 					j = false
 				elseif d then
-					wait(del)
+					wait(rdel)
 					h = false
 					d = false
 					k = true
 					j = false
 				elseif k then
-					wait(del)
+					wait(rdel)
 					h = false
 					d = false
 					j = true
 					k = false
 				elseif j then
-					wait(del)
+					wait(rdel)
 					h = true
 					d = false
 					j = false
