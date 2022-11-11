@@ -13,12 +13,11 @@ local AimlockTarget;
 local AntiEnabled = false
 local PreviousPosition;
 
+
 _G.TargetPart = AimPart
 local h = true
 local d = false
-local j = false
-local k = false
-local del = 0.5
+_G.del = 0.5
 
 
 -- // Functions to get target
@@ -123,26 +122,10 @@ TargetFunctions = {
 					wait(del)
 					h = false
 					d = true
-					k = false
-					j = false
 				elseif d then
 					wait(del)
 					h = false
 					d = false
-					k = true
-					j = false
-				elseif k then
-					wait(del)
-					h = false
-					d = false
-					j = true
-					k = false
-				elseif j then
-					wait(del)
-					h = true
-					d = false
-					j = false
-					k = false
 				end
 			end)
 			coroutine.resume(func) 
@@ -150,13 +133,7 @@ TargetFunctions = {
 				_G.TargetPart = "UpperTorso"
 			end
 			if d then
-				_G.TargetPart = "Head"
-			end
-			if j then
-				_G.TargetPart = "LeftUpperArm"
-			end
-			if k then
-				_G.TargetPart = "RightUpperArm"
+				_G.TargetPart = "LowerTorso"
 			end
 		end
 	end
@@ -298,6 +275,7 @@ UIS.InputEnded:Connect(function(input, gp)
 	end
 end)
 
+
 RService.Heartbeat:Connect(function(delta)
 	TargetFunctions.RandomPart()
 	if HeartBeatFunctions.Checks() then
@@ -317,5 +295,6 @@ RService.Heartbeat:Connect(function(delta)
 		PreviousPosition = nil
 	end
 end)
+
 
 getgenv().isLoaded = true
