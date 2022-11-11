@@ -122,10 +122,26 @@ TargetFunctions = {
 					wait(del)
 					h = false
 					d = true
+					k = false
+					j = false
 				elseif d then
 					wait(del)
 					h = false
 					d = false
+					k = true
+					j = false
+				elseif k then
+					wait(del)
+					h = false
+					d = false
+					j = true
+					k = false
+				elseif j then
+					wait(del)
+					h = true
+					d = false
+					j = false
+					k = false
 				end
 			end)
 			coroutine.resume(func) 
@@ -133,6 +149,12 @@ TargetFunctions = {
 				_G.TargetPart = "UpperTorso"
 			end
 			if d then
+				_G.TargetPart = "LowerTorso"
+			end
+			if j then
+				_G.TargetPart = "UpperTorso"
+			end
+			if k then
 				_G.TargetPart = "LowerTorso"
 			end
 		end
