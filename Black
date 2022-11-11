@@ -17,7 +17,7 @@ local PreviousPosition;
 _G.TargetPart = AimPart
 local h = true
 local d = false
-_G.del = 0.5
+del = rdelay
 
 
 -- // Functions to get target
