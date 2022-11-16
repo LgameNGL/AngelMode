@@ -18,6 +18,8 @@ _G.TargetPart = AimPart
 local h = true
 local d = false
 local c = 1
+local canSwitch = true
+
 
 -- // Functions to get target
 TargetFunctions = {
@@ -246,8 +248,10 @@ InputFunctions = {
 				AntiBypass = true
 			end
 			elseif input.UserInputType == Enum.UserInputType.MouseButton1 then
-			if RandomAimParts then
+			if RandomAimParts and canSwitch then
+				delay(_G.SwitchDelay, function() canSwitch = true end)
 				TargetFunctions.NextPart() -- get newwww part!!!
+				canSwitch = false
 			end
 		end
 	end,
@@ -309,6 +313,10 @@ HeartBeatFunctions = {
 
 	lockOn = function(Target, Velocity)
 		Camera.CFrame = CF(Camera.CFrame.p, Target.Position + Velocity)
+	end,
+	
+	shoot = function(Location)
+		
 	end,
 }
 
