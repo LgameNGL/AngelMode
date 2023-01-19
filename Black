@@ -280,7 +280,7 @@ HeartBeatFunctions = {
 			if mult then
 				NewVelocity = Vector3.new(
 					Velocity.X * PredictionVelocity,
-					Velocity.Y / YSub,
+					Velocity.Y * YSub,
 					Velocity.Z * PredictionVelocity
 				)
 			else
