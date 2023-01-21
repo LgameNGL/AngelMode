@@ -379,7 +379,7 @@ RService.Heartbeat:Connect(function(delta)
 	end
 end)
 
-
+--[[
 -- // Metatable vars
 local mt = getrawmetatable(game)
 local backupindex = mt.__index
@@ -402,5 +402,5 @@ mt.__index = newcclosure(function(t, k)
 end)
 -- // Revert
 setreadonly(mt, true)
-
+]]
 getgenv().isLoaded = true
