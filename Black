@@ -163,6 +163,14 @@ TargetFunctions = {
 	end
 ]]
 	NextPart = function()
+		if AutomaticPart then
+			for i,v in pairs(_G.AutomaticPartWhitelist) do
+				if Character:FindFirstChild(v) then
+					_G.TargetPart = AimPart
+					return
+				end
+			end
+		end
 		if (c == #_G.PTR) then
 			_G.TargetPart = _G.PTR[c]
 			c = 1  -- reset loop
