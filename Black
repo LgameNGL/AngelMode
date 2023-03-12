@@ -387,7 +387,7 @@ HeartBeatFunctions = {
 
 				for i,v in pairs(memory) do
 					if a == v then
-						print(a, v, AimlockTarget.Character.Humanoid.WalkSpeed)
+						--print(a, v, AimlockTarget.Character.Humanoid.WalkSpeed)
 						count += 1
 					end
 				end
